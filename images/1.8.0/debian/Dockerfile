@@ -1,4 +1,4 @@
-FROM node:10-buster-slim
+FROM node:12-stretch-slim
 
 # Follow the principle of least privilege: run as unprivileged user.
 #
