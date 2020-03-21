@@ -12,8 +12,6 @@ ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${E
 
 RUN set -ex; \
     apk add --no-cache \
-        g++ \
-        make \
         python \
     ; \
     python --version; \

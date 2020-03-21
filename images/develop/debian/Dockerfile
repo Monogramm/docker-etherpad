@@ -11,7 +11,13 @@ ARG ETHERPAD_VERSION=develop
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
+    apt-get update -q; \
+    apt-get install -y --no-install-recommends \
+        python \
+    ; \
     python --version; \
+    export PYTHON=`which python`; \
+    rm -rf /var/lib/apt/lists/*; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
     mkdir -p /opt; \
