@@ -13,11 +13,10 @@ ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${E
 RUN set -ex; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
-    mkdir -p /opt/etherpad-lite; \
+    mkdir -p /opt; \
     mv "etherpad-lite-${ETHERPAD_VERSION}" \
-        /opt/etherpad-lite\
+        /opt/etherpad-lite \
     ; \
-    rm -rf "etherpad-lite-${ETHERPAD_VERSION}"; \
     chown etherpad:etherpad /opt/etherpad-lite
 
 USER etherpad:etherpad
