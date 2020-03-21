@@ -29,7 +29,7 @@ dockerRepo="monogramm/docker-etherpad"
 latests=( $( curl -fsSL 'https://api.github.com/repos/ether/etherpad-lite/tags' |tac|tac| \
 	grep -oE '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' | \
 	sort -urV )
-	latest )
+	develop )
 
 # Remove existing images
 echo "reset docker images"

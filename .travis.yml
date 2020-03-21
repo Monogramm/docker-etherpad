@@ -49,8 +49,8 @@ notifications:
   email: false
 
 env: # Environments
-    - VERSION=latest VARIANT=alpine
-    - VERSION=latest VARIANT=debian
+    - VERSION=develop VARIANT=alpine
+    - VERSION=develop VARIANT=debian
     - VERSION=1.7.5 VARIANT=alpine
     - VERSION=1.7.5 VARIANT=debian
     - VERSION=1.8.0 VARIANT=alpine

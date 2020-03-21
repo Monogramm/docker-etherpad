@@ -14,7 +14,7 @@ USER etherpad:etherpad
 
 WORKDIR /opt/etherpad-lite
 
-ARG ETHERPAD_VERSION=latest
+ARG ETHERPAD_VERSION=develop
 
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
