@@ -9,7 +9,6 @@ services:
     depends_on:
       - etherpad_db
       - etherpad
-      - etherpadnginx
     volumes_from:
       - etherpad
     volumes:
