@@ -82,7 +82,7 @@ Available options:
 * `USER_PASSWORD`: the password for the first user `user` (leave unspecified if you do not want to create it)
 * `TRUST_PROXY`: set to `true` if you are using a reverse proxy in front of Etherpad (for example: Traefik for SSL termination via Let's Encrypt). This will affect security and correctness of the logs if not done
 * `LOGLEVEL`: valid values are `DEBUG`, `INFO`, `WARN` and `ERROR`
-* `LOGLOCALELEVEL`: default locale
+* `LOCALE`: default locale
 * `REQUIRE_AUTH`: if you require authentication of all users.
 
 [ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth) options:
@@ -91,14 +91,14 @@ Available options:
 * `LDAP_BASE_DN`: LDAP Account Base. Format: `ou=Users,dc=example,dc=com`
 * `LDAP_ACCOUNT_PATTERN`: LDAP Account Pattern. Format: `(&(objectClass=*)(uid={{username}}))`
 * `LDAP_DISPLAY_NAME_ATTR`: LDAP Display name attribute. Format: `cn`
-* `LDAP_SEARCH_DN`: LDAP URL. Format: `uid=searchuser,dc=example,dc=com`
-* `LDAP_SEARCH_PASSWD`: LDAP URL. Format: `supersecretpassword`
-* `LDAP_GROUP_DN`: LDAP URL. Format: `ou=Groups,dc=example,dc=com`
-* `LDAP_GROUP_ATTR`: LDAP URL. Format: `member`
-* `LDAP_GROUP_ATTR_IS_DN`: LDAP URL. Format: `true`
-* `LDAP_GROUP_SCOPE`: LDAP URL. Format: `sub`
-* `LDAP_GROUP_SEARCH`: LDAP URL. Format: `(&(cn=admin)(objectClass=groupOfNames))`
-* `LDAP_ANON_RO`: LDAP URL. Format: `false`
+* `LDAP_SEARCH_DN`: LDAP Search DN. Format: `uid=searchuser,dc=example,dc=com`
+* `LDAP_SEARCH_PASSWD`: LDAP Search Password. Format: `supersecretpassword`
+* `LDAP_GROUP_DN`: LDAP Group DN. Format: `ou=Groups,dc=example,dc=com`
+* `LDAP_GROUP_ATTR`: LDAP Group attribute. Format: `member`
+* `LDAP_GROUP_ATTR_IS_DN`: LDAP Group attribute is DN. Format: `true`
+* `LDAP_GROUP_SCOPE`: LDAP Group scope. Format: `sub`
+* `LDAP_GROUP_SEARCH`: LDAP Group search pattern. Format: `(&(cn=admin)(objectClass=groupOfNames))`
+* `LDAP_ANON_RO`: LDAP Anonymous read only. Format: `false`
 
 [ep_piwik](https://www.npmjs.com/package/ep_piwik) options:
 

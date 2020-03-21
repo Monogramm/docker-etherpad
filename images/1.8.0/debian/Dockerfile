@@ -1,4 +1,4 @@
-FROM node:10-buster-slim
+FROM node:12-stretch-slim
 
 # Follow the principle of least privilege: run as unprivileged user.
 #
@@ -11,11 +11,20 @@ ARG ETHERPAD_VERSION=1.8.0
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
+    apt-get update -q; \
+    apt-get install -y --no-install-recommends \
+        python \
+    ; \
+    python --version; \
+    export PYTHON=`which python`; \
+    rm -rf /var/lib/apt/lists/*; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
-    mkdir /opt/etherpad-lite; \
-    mv ${ETHERPAD_VERSION} /opt/etherpad-lite; \
-    chown etherpad:etherpad /opt/etherpad-lite
+    mkdir -p /opt; \
+    mv "etherpad-lite-${ETHERPAD_VERSION}" \
+        /opt/etherpad-lite \
+    ; \
+    chown -R etherpad:etherpad /opt/etherpad-lite
 
 USER etherpad:etherpad
 
@@ -23,11 +32,11 @@ WORKDIR /opt/etherpad-lite
 
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
-ENV NODE_ENV=prod
+ENV NODE_ENV=production
 
 # Add requirements and install application
 RUN set -ex; \
-    bin/installDeps.sh; \
+    ./bin/installDeps.sh; \
 	rm -rf ~/.npm/_cacache
 
 # plugins to install while building the container. By default no plugins are
