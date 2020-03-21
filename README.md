@@ -46,8 +46,6 @@ Real-time collaborative document editor.
 * `alpine`
 * `1.8.0-debian` `1.8.0`
 * `1.8.0-alpine`
-* `1.7.5-debian` `1.7.5`
-* `1.7.5-alpine`
 
 ## How to run this image ?
 
