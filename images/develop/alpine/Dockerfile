@@ -27,7 +27,9 @@ ENV NODE_ENV=prod
 
 # Add requirements and install application
 RUN set -ex; \
-    bin/installDeps.sh; \
+    pwd; \
+    ls -al .; \
+    ./bin/installDeps.sh; \
 	rm -rf ~/.npm/_cacache
 
 # plugins to install while building the container. By default no plugins are
