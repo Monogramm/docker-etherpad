@@ -4,17 +4,17 @@ FROM node:10-alpine
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
-RUN useradd --uid 5001 --create-home etherpad
+RUN adduser -u 5001 -D etherpad
 
 ARG ETHERPAD_VERSION=develop
 
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
-    tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
+    tar -xzvf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
-    mkdir /opt/etherpad-lite; \
-    mv ${ETHERPAD_VERSION} /opt/etherpad-lite; \
+    mkdir -p /opt/etherpad-lite; \
+    mv "etherpad-lite-${ETHERPAD_VERSION}" /opt/etherpad-lite; \
     chown etherpad:etherpad /opt/etherpad-lite
 
 USER etherpad:etherpad
