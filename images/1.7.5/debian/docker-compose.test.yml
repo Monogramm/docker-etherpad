@@ -7,15 +7,15 @@ services:
       context: ./test
       dockerfile: Dockerfile
     depends_on:
-      - __app_slug__db
-      - __app_slug__
+      - etherpad_db
+      - etherpad
     volumes_from:
-      - __app_slug__
+      - etherpad
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
 
-  __app_slug__:
+  etherpad:
     # For development or CI, tag build from local Dockerfile
     build:
       context: ./
@@ -26,38 +26,40 @@ services:
         - BUILD_DATE=${BUILD_DATE}
     # For production, download prebuilt image
     #image: ${IMAGE_NAME}
-    container_name: __app_slug__
+    container_name: etherpad
     #restart: always
     depends_on:
-      - __app_slug__db
+      - etherpad_db
     links:
-      - __app_slug__db
+      - etherpad_db
     ports:
       - 80:80
     volumes:
-      - /srv/__app_slug__/html:/var/www/html
+      - /srv/etherpad/html:/var/www/html
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      - __app_uppercase_slug___DB_TYPE=mysql
-      - __app_uppercase_slug___DB_HOST=__app_slug__db # same as mysql container name
-      - __app_uppercase_slug___DB_NAME=__app_slug__ # same as mysql MYSQL_DATABASE env name
-      - __app_uppercase_slug___DB_USER=__app_slug__ # same as mysql MYSQL_USER env name
-      - __app_uppercase_slug___DB_PASSWORD=__app_slug__dbpass # same as mysql MYSQL_PASSWORD env name
+      - DB_TYPE=mysql
+      - DB_HOST=etherpad_db # same as mysql container name
+      - DB_PORT=3306
+      - DB_NAME=${ETHERPAD_DB_NAME}
+      - DB_USER=${ETHERPAD_DB_USER}
+      - DB_PASS=${ETHERPAD_DB_PASSWORD}
+      - DB_CHARSET=utf8mb4
 
-  __app_slug__db:
+  etherpad_db:
     image: mariadb:latest
-    container_name: __app_slug__db
+    container_name: etherpad_db
     restart: always
     command: --character_set_client=utf8 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --character-set-client-handshake=FALSE
     #ports:
     #  - 3306:3306
     volumes:
-      - /srv/__app_slug__/db:/var/lib/mysql
+      - /srv/etherpad/db:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
       - MYSQL_ROOT_PASSWORD=mysqlrootpassword
-      - MYSQL_DATABASE=__app_slug__
-      - MYSQL_USER=__app_slug__
-      - MYSQL_PASSWORD=__app_slug__dbpass
+      - MYSQL_DATABASE=${ETHERPAD_DB_NAME}
+      - MYSQL_USER=${ETHERPAD_DB_USER}
+      - MYSQL_PASSWORD=${ETHERPAD_DB_PASSWORD}
