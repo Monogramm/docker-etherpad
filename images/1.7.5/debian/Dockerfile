@@ -4,14 +4,14 @@ FROM node:10-buster-slim
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
-RUN useradd --uid 5001 --disabled-password --create-home etherpad
+RUN useradd --uid 5001 --create-home etherpad
 
 ARG ETHERPAD_VERSION=1.7.5
 
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
-    tar -xzvf ${ETHERPAD_VERSION}.tar.gz; \
+    tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
     mkdir -p /opt/etherpad-lite; \
     mv "etherpad-lite-${ETHERPAD_VERSION}" /opt/etherpad-lite; \
