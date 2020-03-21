@@ -6,21 +6,20 @@ FROM node:10-buster-slim
 # that do not allow images running as root.
 RUN useradd --uid 5001 --create-home etherpad
 
-RUN set -ex; \
-    mkdir /opt/etherpad-lite; \
-    chown etherpad:etherpad /opt/etherpad-lite
-
-USER etherpad:etherpad
-
-WORKDIR /opt/etherpad-lite
-
 ARG ETHERPAD_VERSION=develop
 
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
-    rm -f ${ETHERPAD_VERSION}.tar.gz
+    rm -f ${ETHERPAD_VERSION}.tar.gz; \
+    mkdir /opt/etherpad-lite; \
+    mv ${ETHERPAD_VERSION} /opt/etherpad-lite; \
+    chown etherpad:etherpad /opt/etherpad-lite
+
+USER etherpad:etherpad
+
+WORKDIR /opt/etherpad-lite
 
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
