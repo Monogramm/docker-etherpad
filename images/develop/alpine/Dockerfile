@@ -14,7 +14,7 @@ RUN set -ex; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
     mkdir -p /opt/etherpad-lite; \
-    mv "etherpad-lite-${ETHERPAD_VERSION}/etherpad-lite-${ETHERPAD_VERSION}" \
+    mv "etherpad-lite-${ETHERPAD_VERSION}" \
         /opt/etherpad-lite\
     ; \
     rm -rf "etherpad-lite-${ETHERPAD_VERSION}"; \

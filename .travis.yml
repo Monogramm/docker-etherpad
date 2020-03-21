@@ -8,7 +8,7 @@ language: shell
 branches:
   only:
     - master
-    - develop
+    #- develop
 
 before_script:
   - env | sort
