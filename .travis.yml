@@ -37,11 +37,12 @@ script:
   - docker-compose -f docker-compose.test.yml ps "sut" | grep "Exit 0"
   # Test containers can be dropped and restarted
   - docker-compose -f docker-compose.test.yml down
-  - travis_retry docker-compose -f docker-compose.test.yml up -d && sleep 60
+  - travis_retry docker-compose -f docker-compose.test.yml up -d etherpad_db && sleep 60
   - docker-compose -f docker-compose.test.yml ps
   - docker-compose -f docker-compose.test.yml logs "etherpad_db"
   - docker-compose -f docker-compose.test.yml ps "etherpad_db" | grep "Up"
-  - docker-compose -f docker-compose.test.yml logs "etherpad"
+  - travis_retry docker-compose -f docker-compose.test.yml up -d && sleep 30
+  - docker-compose -f docker-compose.test.yml ps
   - docker-compose -f docker-compose.test.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
   - docker-compose -f docker-compose.test.yml logs "sut"
