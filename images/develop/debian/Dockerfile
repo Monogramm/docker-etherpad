@@ -11,6 +11,7 @@ ARG ETHERPAD_VERSION=develop
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
+    python --version; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
     mkdir -p /opt; \
@@ -25,7 +26,7 @@ WORKDIR /opt/etherpad-lite
 
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
-ENV NODE_ENV=prod
+ENV NODE_ENV=production
 
 # Add requirements and install application
 RUN set -ex; \
