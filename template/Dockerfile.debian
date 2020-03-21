@@ -17,7 +17,7 @@ RUN set -ex; \
     mv "etherpad-lite-${ETHERPAD_VERSION}" \
         /opt/etherpad-lite \
     ; \
-    chown etherpad:etherpad /opt/etherpad-lite
+    chown -R etherpad:etherpad /opt/etherpad-lite
 
 USER etherpad:etherpad
 
@@ -29,8 +29,6 @@ ENV NODE_ENV=prod
 
 # Add requirements and install application
 RUN set -ex; \
-    pwd; \
-    ls -al .; \
     ./bin/installDeps.sh; \
 	rm -rf ~/.npm/_cacache
 
