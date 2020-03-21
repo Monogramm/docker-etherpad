@@ -11,6 +11,10 @@ ARG ETHERPAD_VERSION=latest
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
+    apk add --no-cache \
+        python \
+    ; \
+    rm -rf /var/lib/apt/lists/*; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
     mkdir -p /opt; \
