@@ -32,10 +32,8 @@ services:
       - etherpad_db
     links:
       - etherpad_db
-    ports:
-      - 80:80
     volumes:
-      - /srv/etherpad/html:/var/www/html
+      - /srv/etherpad/data:/opt/etherpad-lite/var
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
