@@ -8,24 +8,6 @@
 [![Docker Size](https://images.microbadger.com/badges/image/monogramm/docker-etherpad.svg)](https://microbadger.com/images/monogramm/docker-etherpad)
 [![GitHub stars](https://img.shields.io/github/stars/Monogramm/docker-etherpad?style=social)](https://github.com/Monogramm/docker-etherpad)
 
-<!--
-
-Template variables to replace in ALL files:
-* Etherpad: Name of the application
-* ether: GitHub Owner of the original application
-* etherpad: GitHub slug of the original application
-* ETHERPAD: Uppercase value of the GitHub slug
-* Real-time collaborative document editor.: Application description
-* https://etherpad.org/: Application URL
-* Etherpad: Uppercase value of the GitHub slug
-
-After replacing all variables:
-* Edit `update.sh` to edit how to retrieve the application latest versions and how to generate images
-* Edit `template/docker-compose_*.yml` to configure your Docker environment for CI
-* Edit `template/test` content for DockerHub custom tests
-
--->
-
 # **Etherpad** Docker image
 
 Docker image for **Etherpad**.
@@ -142,6 +124,11 @@ docker run -d \
 	-p 9001:9001 \
 	monogramm/docker-etherpad
 ```
+
+# Known Issues
+
+-	Etherpad does not wait for database to be ready before starting. You may need to start your (external) first, then start Etherpad.
+	* **TODO**: Add [wait-for-it](https://github.com/vishnubob/wait-for-it) in the container
 
 # Questions / Issues
 If you got any questions or problems using the image, please visit our [Github Repository](https://github.com/Monogramm/docker-etherpad) and write an issue.
