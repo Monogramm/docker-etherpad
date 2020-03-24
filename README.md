@@ -10,9 +10,15 @@
 
 # **Etherpad** Docker image
 
-Docker image for **Etherpad**.
+Docker image for **Etherpad** setup for production and with additionnal plugins.
 
 :construction: **This image is still in development!**
+
+Additionnal plugins installed:
+-	[ep_hash_auth](https://www.npmjs.com/package/ep_hash_auth)
+-	[ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth)
+-	[ep_piwik](https://www.npmjs.com/package/ep_piwik)
+-	[ep_markdown](https://www.npmjs.com/package/ep_markdown)
 
 ## What is **Etherpad** ?
 
