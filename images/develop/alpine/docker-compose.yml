@@ -37,6 +37,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
+      - TITLE=Test Etherpad
+      # Database configuration
       - DB_TYPE=postgres
       - DB_HOST=etherpad_db # same as pgsql container name
       - DB_PORT=5432

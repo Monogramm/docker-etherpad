@@ -47,7 +47,7 @@ RUN set -ex; \
 #   ETHERPAD_PLUGINS="ep_codepad ep_author_neat"
 #
 # Available Etherpad plugins: https://static.etherpad.org/plugins.html
-ARG ETHERPAD_PLUGINS="ep_hash_auth ep_ldapauth ep_piwik ep_markdown"
+ARG ETHERPAD_PLUGINS="ep_hash_auth ep_ldapauth ep_piwik ep_markdown ep_webpack"
 
 # Install the plugins, if ETHERPAD_PLUGINS is not empty.
 #

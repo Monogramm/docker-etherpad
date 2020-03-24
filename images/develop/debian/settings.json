@@ -520,6 +520,14 @@
     },
 
     // https://www.npmjs.com/package/ep_markdown
-    "ep_markdown_default": "${MARKDOWN:true}"
+    "ep_markdown_default": "${MARKDOWN:true}",
+
+    // https://www.npmjs.com/package/ep_webpack
+    "ep_webpack": {
+      /* Ignores parts (not plugins) not ready to be bundled */
+      "ignoredParts": ["autocomp", "comments_page"],
+      /* Bundle CSS files too */
+      "bundleCSS": true
+    }
 
 }

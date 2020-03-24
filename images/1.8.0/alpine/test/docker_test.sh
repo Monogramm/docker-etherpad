@@ -22,10 +22,12 @@ if ! ping -c 10 -q etherpad ; then
     exit 4
 fi
 
-# XXX Add your own tests
+# Add your own tests
 # https://docs.docker.com/docker-hub/builds/automated-testing/
-#echo "Executing Etherpad app tests..."
-## TODO Test result of tests
+echo "Executing Etherpad app tests..."
+
+wget http://etherpad:9001
+grep '<title>Test Etherpad</title>' index.html
 
 # Success
 echo 'Docker tests successful'
