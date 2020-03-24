@@ -27,7 +27,7 @@ fi
 echo "Executing Etherpad app tests..."
 
 wget http://etherpad:9001
-cat index.html
+grep '<title>Test Etherpad</title>' index.html
 
 # Success
 echo 'Docker tests successful'
