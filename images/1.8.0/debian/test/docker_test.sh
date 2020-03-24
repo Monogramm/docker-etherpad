@@ -26,6 +26,7 @@ fi
 # https://docs.docker.com/docker-hub/builds/automated-testing/
 #echo "Executing Etherpad app tests..."
 ## TODO Test result of tests
+wget http://etherpad:9001
 
 # Success
 echo 'Docker tests successful'
