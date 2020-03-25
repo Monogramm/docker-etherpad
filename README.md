@@ -18,6 +18,8 @@ Additionnal plugins installed:
 -   [ep_hash_auth](https://www.npmjs.com/package/ep_hash_auth)
 -   [ep_markdown](https://www.npmjs.com/package/ep_markdown)
 -   [ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth)
+-   [ep_piwik](https://www.npmjs.com/package/ep_piwik)
+-   [ep_webpack](https://www.npmjs.com/package/ep_webpack)
 
 ## What is **Etherpad** ?
 
@@ -88,12 +90,10 @@ Available options:
 -   `LDAP_GROUP_SEARCH`: LDAP Group search pattern. Format: `(&(cn=etherpad-admin)(objectClass=groupOfNames))`
 -   `LDAP_ANON_RO`: LDAP Anonymous read only. Format: `false` (default) or `true`
 
-<!--
 [ep_piwik](https://www.npmjs.com/package/ep_piwik) options:
 
 -   `PIWIK_URL`: Matomo / Piwik URL
 -   `PIWIK_SITE_ID`: Matomo / Piwik Site ID
--->
 
 [ep_markdown](https://www.npmjs.com/package/ep_markdown) options:
 
