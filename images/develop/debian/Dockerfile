@@ -65,13 +65,12 @@ CMD ["node", "node_modules/ep_etherpad-lite/node/server.js"]
 # Arguments to label built container
 ARG VCS_REF
 ARG BUILD_DATE
-ARG VERSION=%%VERSION%%
 
 # Container labels (http://label-schema.org/)
 # Container annotations (https://github.com/opencontainers/image-spec)
 LABEL maintainer="Monogramm maintainers <opensource at monogramm dot io>" \
       product="Etherpad" \
-      version=$VERSION \
+      version=$ETHERPAD_VERSION \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/Monogramm/docker-etherpad" \
       org.label-schema.build-date=$BUILD_DATE \
@@ -79,7 +78,7 @@ LABEL maintainer="Monogramm maintainers <opensource at monogramm dot io>" \
       org.label-schema.description="Real-time collaborative document editor." \
       org.label-schema.url="https://etherpad.org/" \
       org.label-schema.vendor="Etherpad" \
-      org.label-schema.version=$VERSION \
+      org.label-schema.version=$ETHERPAD_VERSION \
       org.label-schema.schema-version="1.0" \
       org.opencontainers.image.revision=$VCS_REF \
       org.opencontainers.image.source="https://github.com/Monogramm/docker-etherpad" \
@@ -88,5 +87,5 @@ LABEL maintainer="Monogramm maintainers <opensource at monogramm dot io>" \
       org.opencontainers.image.description="Real-time collaborative document editor." \
       org.opencontainers.image.url="https://etherpad.org/" \
       org.opencontainers.image.vendor="Etherpad" \
-      org.opencontainers.image.version=$VERSION \
+      org.opencontainers.image.version=$ETHERPAD_VERSION \
       org.opencontainers.image.authors="Monogramm maintainers <opensource at monogramm dot io>"
