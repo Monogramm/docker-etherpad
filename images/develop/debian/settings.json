@@ -373,24 +373,25 @@
       // 2) please note that if password is null, the user will not be created
       "password": "${USER_PASSWORD}",
       "is_admin": false
-    }
+    },
 
-    // FIXME https://github.com/tykeal/ep_ldapauth/issues/43
     // https://www.npmjs.com/package/ep_ldapauth
-    //"ldapauth": {
-    //    "url": "${LDAP_URL}",
-    //    "accountBase": "${LDAP_BASE_DN}",
-    //    "accountPattern": "${LDAP_ACCOUNT_PATTERN:(&(objectClass=*)(uid={{username}}))}",
-    //    "displayNameAttribute": "${LDAP_DISPLAY_NAME_ATTR:cn}",
-    //    "searchDN": "${LDAP_SEARCH_DN}",
-    //    "searchPWD": "${LDAP_SEARCH_PASSWD}",
-    //    "groupSearchBase": "${LDAP_GROUP_DN}",
-    //    "groupAttribute": "${LDAP_GROUP_ATTR:member}",
-    //    "groupAttributeIsDN": "${LDAP_GROUP_ATTR_IS_DN:true}",
-    //    "searchScope": "${LDAP_GROUP_SCOPE}",
-    //    "groupSearch": "${LDAP_GROUP_SEARCH:(&(cn=admin)(objectClass=groupOfNames))}",
-    //    "anonymousReadonly": "${LDAP_ANON_RO:false}"
-    //}
+    "ldapauth": {
+        // Fix for https://github.com/tykeal/ep_ldapauth/issues/43
+        "password": "${LDAP_ENABLED:}",
+        "url": "${LDAP_URL}",
+        "accountBase": "${LDAP_BASE_DN}",
+        "accountPattern": "${LDAP_ACCOUNT_PATTERN:(&(objectClass=*)(uid={{username}}))}",
+        "displayNameAttribute": "${LDAP_DISPLAY_NAME_ATTR:cn}",
+        "searchDN": "${LDAP_SEARCH_DN}",
+        "searchPWD": "${LDAP_SEARCH_PASSWD}",
+        "groupSearchBase": "${LDAP_GROUP_DN}",
+        "groupAttribute": "${LDAP_GROUP_ATTR:member}",
+        "groupAttributeIsDN": "${LDAP_GROUP_ATTR_IS_DN:true}",
+        "searchScope": "${LDAP_GROUP_SCOPE:sub}",
+        "groupSearch": "${LDAP_GROUP_SEARCH:(&(objectClass=groupOfNames)(cn=admin))}",
+        "anonymousReadonly": "${LDAP_ANON_RO:false}"
+    }
   },
 
   /*

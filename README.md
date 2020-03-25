@@ -17,6 +17,7 @@ Additionnal plugins installed:
 
 -   [ep_hash_auth](https://www.npmjs.com/package/ep_hash_auth)
 -   [ep_markdown](https://www.npmjs.com/package/ep_markdown)
+-   [ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth)
 
 ## What is **Etherpad** ?
 
@@ -72,6 +73,7 @@ Available options:
 
 [ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth) options:
 
+-   `LDAP_ENABLED`: LDAP enabled. Format: any non null value will enable `ldapauth`
 -   `LDAP_URL`: LDAP URL. Format: `ldaps://ldap.example.com`
 -   `LDAP_BASE_DN`: LDAP Account Base. Format: `ou=Users,dc=example,dc=com`
 -   `LDAP_ACCOUNT_PATTERN`: LDAP Account Pattern. Format: `(&(objectClass=*)(uid={{username}}))`
@@ -80,15 +82,17 @@ Available options:
 -   `LDAP_SEARCH_PASSWD`: LDAP Search Password. Format: `supersecretpassword`
 -   `LDAP_GROUP_DN`: LDAP Group DN. Format: `ou=Groups,dc=example,dc=com`
 -   `LDAP_GROUP_ATTR`: LDAP Group attribute. Format: `member`
--   `LDAP_GROUP_ATTR_IS_DN`: LDAP Group attribute is DN. Format: `true`
+-   `LDAP_GROUP_ATTR_IS_DN`: LDAP Group attribute is DN. Format: `false` or `true` (default)
 -   `LDAP_GROUP_SCOPE`: LDAP Group scope. Format: `sub`
--   `LDAP_GROUP_SEARCH`: LDAP Group search pattern. Format: `(&(cn=admin)(objectClass=groupOfNames))`
--   `LDAP_ANON_RO`: LDAP Anonymous read only. Format: `false`
+-   `LDAP_GROUP_SEARCH`: LDAP Group search pattern. Format: `(&(cn=etherpad-admin)(objectClass=groupOfNames))`
+-   `LDAP_ANON_RO`: LDAP Anonymous read only. Format: `false` (default) or `true`
 
+<!--
 [ep_piwik](https://www.npmjs.com/package/ep_piwik) options:
 
 -   `PIWIK_URL`: Matomo / Piwik URL
 -   `PIWIK_SITE_ID`: Matomo / Piwik Site ID
+-->
 
 [ep_markdown](https://www.npmjs.com/package/ep_markdown) options:
 
