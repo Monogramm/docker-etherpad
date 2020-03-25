@@ -70,6 +70,7 @@ Available options:
 -   `LOGLEVEL`: valid values are `DEBUG`, `INFO`, `WARN` and `ERROR`
 -   `LOCALE`: default locale
 -   `REQUIRE_AUTH`: if you require authentication of all users.
+-   `MINIFY`: if you wish to disable minify.
 
 [ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth) options:
 
