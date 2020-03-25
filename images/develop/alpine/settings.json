@@ -210,7 +210,7 @@
    * If this option is enabled, a user must have a session to access pads.
    * This effectively allows only group pads to be accessed.
    */
-  "requireSession": false,
+  "requireSession": "${REQUIRE_SESSION:false}",
 
   /*
    * Users may edit pads but not create new ones.
