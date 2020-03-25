@@ -16,10 +16,7 @@ Docker image for **Etherpad** setup for production and with additionnal plugins.
 Additionnal plugins installed:
 
 -   [ep_hash_auth](https://www.npmjs.com/package/ep_hash_auth)
--   [ep_ldapauth](https://www.npmjs.com/package/ep_ldapauth)
--   [ep_piwik](https://www.npmjs.com/package/ep_piwik)
 -   [ep_markdown](https://www.npmjs.com/package/ep_markdown)
--   [ep_webpack](https://www.npmjs.com/package/ep_webpack)
 
 ## What is **Etherpad** ?
 

@@ -373,23 +373,24 @@
       // 2) please note that if password is null, the user will not be created
       "password": "${USER_PASSWORD}",
       "is_admin": false
-    },
-
-    // https://www.npmjs.com/package/ep_ldapauth
-    "ldapauth": {
-        "url": "${LDAP_URL}",
-        "accountBase": "${LDAP_BASE_DN}",
-        "accountPattern": "${LDAP_ACCOUNT_PATTERN:(&(objectClass=*)(uid={{username}}))}",
-        "displayNameAttribute": "${LDAP_DISPLAY_NAME_ATTR:cn}",
-        "searchDN": "${LDAP_SEARCH_DN}",
-        "searchPWD": "${LDAP_SEARCH_PASSWD}",
-        "groupSearchBase": "${LDAP_GROUP_DN}",
-        "groupAttribute": "${LDAP_GROUP_ATTR:member}",
-        "groupAttributeIsDN": "${LDAP_GROUP_ATTR_IS_DN:true}",
-        "searchScope": "${LDAP_GROUP_SCOPE}",
-        "groupSearch": "${LDAP_GROUP_SEARCH:(&(cn=admin)(objectClass=groupOfNames))}",
-        "anonymousReadonly": "${LDAP_ANON_RO:false}"
     }
+
+    // FIXME https://github.com/tykeal/ep_ldapauth/issues/43
+    // https://www.npmjs.com/package/ep_ldapauth
+    //"ldapauth": {
+    //    "url": "${LDAP_URL}",
+    //    "accountBase": "${LDAP_BASE_DN}",
+    //    "accountPattern": "${LDAP_ACCOUNT_PATTERN:(&(objectClass=*)(uid={{username}}))}",
+    //    "displayNameAttribute": "${LDAP_DISPLAY_NAME_ATTR:cn}",
+    //    "searchDN": "${LDAP_SEARCH_DN}",
+    //    "searchPWD": "${LDAP_SEARCH_PASSWD}",
+    //    "groupSearchBase": "${LDAP_GROUP_DN}",
+    //    "groupAttribute": "${LDAP_GROUP_ATTR:member}",
+    //    "groupAttributeIsDN": "${LDAP_GROUP_ATTR_IS_DN:true}",
+    //    "searchScope": "${LDAP_GROUP_SCOPE}",
+    //    "groupSearch": "${LDAP_GROUP_SEARCH:(&(cn=admin)(objectClass=groupOfNames))}",
+    //    "anonymousReadonly": "${LDAP_ANON_RO:false}"
+    //}
   },
 
   /*
@@ -513,21 +514,21 @@
         "hash_adm": false
     },
 
-    // https://www.npmjs.com/package/ep_piwik
-    "ep_piwik": {
-        "url": "${PIWIK_URL}",
-        "siteId": "${PIWIK_SITE_ID}"
-    },
-
     // https://www.npmjs.com/package/ep_markdown
-    "ep_markdown_default": "${MARKDOWN:true}",
+    "ep_markdown_default": "${MARKDOWN:true}"
+
+    // https://www.npmjs.com/package/ep_piwik
+    //"ep_piwik": {
+    //    "url": "${PIWIK_URL}",
+    //    "siteId": "${PIWIK_SITE_ID}"
+    //}
 
     // https://www.npmjs.com/package/ep_webpack
-    "ep_webpack": {
-      /* Ignores parts (not plugins) not ready to be bundled */
-      "ignoredParts": ["autocomp", "comments_page"],
-      /* Bundle CSS files too */
-      "bundleCSS": true
-    }
+    //"ep_webpack": {
+    //  /* Ignores parts (not plugins) not ready to be bundled */
+    //  "ignoredParts": ["autocomp", "comments_page"],
+    //  /* Bundle CSS files too */
+    //  "bundleCSS": true
+    //}
 
 }
