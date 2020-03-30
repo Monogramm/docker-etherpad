@@ -1,10 +1,16 @@
 FROM node:12-alpine
 
+# Add wait-for-it
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /
+
 # Follow the principle of least privilege: run as unprivileged user.
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
-RUN adduser -u 5001 -D etherpad
+RUN set -ex; \
+    adduser -u 5001 -D etherpad; \
+    chmod +x /wait-for-it.sh; \
+    chown etherpad /wait-for-it.sh
 
 ARG ETHERPAD_VERSION=1.8.0
 

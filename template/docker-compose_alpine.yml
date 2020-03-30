@@ -28,6 +28,7 @@ services:
     #image: ${IMAGE_NAME}
     container_name: etherpad
     #restart: always
+    command: /wait-for-it.sh etherpad_db:5432 -- node node_modules/ep_etherpad-lite/node/server.js
     depends_on:
       - etherpad_db
     links:
