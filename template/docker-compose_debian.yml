@@ -34,6 +34,8 @@ services:
       - etherpad_db
     volumes:
       - /srv/etherpad/data:/opt/etherpad-lite/var
+      # If you wish to provide your own API key
+      #- ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
