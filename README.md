@@ -36,9 +36,11 @@ Real-time collaborative document editor.
 -   From Etherpad-lite [`master` branch](https://github.com/ether/etherpad-lite/tree/master)
     -   `alpine` `latest`
     -   `debian`
+
 -   From Etherpad-lite [`develop` branch](https://github.com/ether/etherpad-lite/tree/develop)
     -   `develop-alpine` `develop`
     -   `develop-debian`
+
 -   From Etherpad-lite [`1.8.0` tag](https://github.com/ether/etherpad-lite/releases/tag/1.8.0)
     -   `1.8.0-alpine` `1.8.0`
     -   `1.8.0-debian`
