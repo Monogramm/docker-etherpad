@@ -59,8 +59,7 @@ for latest in "${latests[@]}"; do
 			cp -r "template/test" "$dir/"
 			cp "template/.env" "$dir/.env"
 			cp template/wait-for-*.sh "$dir/"
-			# FIXME Do not create docker-compose.test.yml because Etherpad does not wait DB to be ready
-			cp "template/docker-compose_${compose[$variant]}.yml" "$dir/docker-compose.yml"
+			cp "template/docker-compose_${compose[$variant]}.yml" "$dir/docker-compose.test.yml"
 
 			# Replace the variables.
 			sed -ri -e '
