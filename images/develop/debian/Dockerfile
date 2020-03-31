@@ -19,6 +19,7 @@ ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${E
 RUN set -ex; \
     apt-get update -q; \
     apt-get install -y --no-install-recommends \
+        netcat \
         python \
     ; \
     python --version; \
