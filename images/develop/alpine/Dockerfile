@@ -15,6 +15,7 @@ RUN set -ex; \
         g++ \
         make \
         python \
+        sqlite \
     ; \
     python --version; \
     export PYTHON=`which python`; \
@@ -38,6 +39,7 @@ ENV NODE_ENV=production
 # Add requirements and install application
 RUN set -ex; \
     ./bin/installDeps.sh; \
+    npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
 
 # plugins to install while building the container. By default no plugins are
