@@ -1,10 +1,16 @@
 FROM node:12-stretch-slim
 
+# Add wait-for-it "like" scripts compatible with sh instead of bash
+COPY wait-for-file.sh wait-for-service.sh /
+
 # Follow the principle of least privilege: run as unprivileged user.
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
-RUN useradd --uid 5001 --create-home etherpad
+RUN set -ex; \
+    useradd --uid 5001 --create-home etherpad; \
+    chmod +x /wait-for-*.sh; \
+    chown etherpad /wait-for-*.sh
 
 ARG ETHERPAD_VERSION=develop
 
@@ -13,6 +19,7 @@ ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${E
 RUN set -ex; \
     apt-get update -q; \
     apt-get install -y --no-install-recommends \
+        netcat \
         python \
     ; \
     python --version; \

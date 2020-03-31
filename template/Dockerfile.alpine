@@ -1,10 +1,16 @@
 FROM node:12-alpine
 
+# Add wait-for-it "like" scripts compatible with sh instead of bash
+COPY wait-for-file.sh wait-for-service.sh /
+
 # Follow the principle of least privilege: run as unprivileged user.
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
-RUN adduser -u 5001 -D etherpad
+RUN set -ex; \
+    adduser -u 5001 -D etherpad; \
+    chmod +x /wait-for-*.sh; \
+    chown etherpad /wait-for-*.sh
 
 ARG ETHERPAD_VERSION=latest
 
