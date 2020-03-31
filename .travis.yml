@@ -52,11 +52,23 @@ notifications:
 
 jobs:
   allow_failures:
-    - env: VERSION=develop VARIANT=alpine
-    - env: VERSION=develop VARIANT=debian
+    - env: VERSION=develop VARIANT=alpine DATABASE=sqlite
+    - env: VERSION=develop VARIANT=alpine DATABASE=postgresql
+    - env: VERSION=develop VARIANT=alpine DATABASE=mysql
+    - env: VERSION=develop VARIANT=debian DATABASE=sqlite
+    - env: VERSION=develop VARIANT=debian DATABASE=postgresql
+    - env: VERSION=develop VARIANT=debian DATABASE=mysql
 
 env: # Environments
-    - VERSION=develop VARIANT=alpine
-    - VERSION=develop VARIANT=debian
-    - VERSION=1.8.0 VARIANT=alpine
-    - VERSION=1.8.0 VARIANT=debian
+    - VERSION=develop VARIANT=alpine DATABASE=sqlite
+    - VERSION=develop VARIANT=alpine DATABASE=postgresql
+    - VERSION=develop VARIANT=alpine DATABASE=mysql
+    - VERSION=develop VARIANT=debian DATABASE=sqlite
+    - VERSION=develop VARIANT=debian DATABASE=postgresql
+    - VERSION=develop VARIANT=debian DATABASE=mysql
+    - VERSION=1.8.0 VARIANT=alpine DATABASE=sqlite
+    - VERSION=1.8.0 VARIANT=alpine DATABASE=postgresql
+    - VERSION=1.8.0 VARIANT=alpine DATABASE=mysql
+    - VERSION=1.8.0 VARIANT=debian DATABASE=sqlite
+    - VERSION=1.8.0 VARIANT=debian DATABASE=postgresql
+    - VERSION=1.8.0 VARIANT=debian DATABASE=mysql

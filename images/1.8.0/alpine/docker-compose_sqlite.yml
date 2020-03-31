@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+  # https://docs.docker.com/docker-hub/builds/automated-testing/
+  sut:
+    build:
+      context: ./test
+      dockerfile: Dockerfile
+    depends_on:
+      - etherpad
+    volumes_from:
+      - etherpad
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+  etherpad:
+    # For development or CI, tag build from local Dockerfile
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args: 
+        - TAG=${TAG}
+        - VCS_REF=${VCS_REF}
+        - BUILD_DATE=${BUILD_DATE}
+    # For production, download prebuilt image
+    #image: ${IMAGE_NAME}
+    container_name: etherpad
+    #restart: always
+    volumes:
+      - /srv/etherpad/data:/opt/etherpad-lite/var
+      # If you wish to provide your own API key
+      #- ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TITLE=Test Etherpad
+      # Database configuration
+      - DB_TYPE=sqlite
+      - DB_NAME=${ETHERPAD_DB_NAME}
