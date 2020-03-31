@@ -23,7 +23,7 @@ Additionnal plugins installed:
 
 This image also includes custom wait scripts. See docker-compose examples on how to use it.
 
-## What is **Etherpad** ?
+## What is **Etherpad**
 
 Real-time collaborative document editor.
 
@@ -43,7 +43,7 @@ Real-time collaborative document editor.
     -   `1.8.0-alpine` `1.8.0`
     -   `1.8.0-debian`
 
-## How to run this image ?
+## How to run this image
 
 To run your instance:
 
@@ -143,12 +143,7 @@ docker run -d \
 	monogramm/docker-etherpad
 ```
 
-# Known Issues
-
--   Etherpad does not wait for database to be ready before starting. You may need to start your (external) first, then start Etherpad.
-    -   **TODO**: Add [wait-for-it](https://github.com/vishnubob/wait-for-it) in the container
-
-# Questions / Issues
+## Questions / Issues
 
 If you got any questions or problems using the image, please visit our [Github Repository](https://github.com/Monogramm/docker-etherpad) and write an issue.
 
