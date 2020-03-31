@@ -20,7 +20,7 @@ before_install:
 
 install:
   - sudo mkdir -p '/srv/etherpad/data'
-  - chmod 777 '/srv/etherpad/data'
+  - sudo chmod 777 '/srv/etherpad/data'
   - echo "Changing to travis test directory ($travis_dir)"
   - cd "$travis_dir"
   # Test containers build
