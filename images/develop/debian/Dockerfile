@@ -1,7 +1,7 @@
 FROM node:12-stretch-slim
 
 # Add wait-for-it "like" scripts compatible with sh instead of bash
-ADD wait-for-file.sh wait-for-service.sh /
+COPY wait-for-file.sh wait-for-service.sh /
 
 # Follow the principle of least privilege: run as unprivileged user.
 #
