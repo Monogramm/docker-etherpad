@@ -53,10 +53,9 @@ for latest in "${latests[@]}"; do
 			cp -r "template/hooks" "$dir/"
 			cp -r "template/test" "$dir/"
 			cp "template/.env" "$dir/.env"
-			# FIXME Do not create docker-compose.test.yml because Etherpad does not wait DB to be ready
-			cp "template/docker-compose_mysql.yml" "$dir/docker-compose_mysql.yml"
-			cp "template/docker-compose_postgresql.yml" "$dir/docker-compose_postgresql.yml"
-			cp "template/docker-compose_sqlite.yml" "$dir/docker-compose_sqlite.yml"
+			cp "template/docker-compose_mysql.yml" "$dir/docker-compose_mysql.test.yml"
+			cp "template/docker-compose_postgresql.yml" "$dir/docker-compose_postgresql.test.yml"
+			cp "template/docker-compose_sqlite.yml" "$dir/docker-compose_sqlite.test.yml"
 
 			# Replace the variables.
 			sed -ri -e '

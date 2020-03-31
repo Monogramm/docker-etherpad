@@ -21,6 +21,8 @@ Additionnal plugins installed:
 -   [ep_piwik](https://www.npmjs.com/package/ep_piwik)
 -   [ep_webpack](https://www.npmjs.com/package/ep_webpack)
 
+This image also includes custom wait scripts. See docker-compose examples on how to use it.
+
 ## What is **Etherpad** ?
 
 Real-time collaborative document editor.

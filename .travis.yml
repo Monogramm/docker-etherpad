@@ -20,32 +20,32 @@ before_script:
 script:
   - cd "$dir"
   # Test containers build
-  - docker-compose -f docker-compose_${DATABASE}.yml build
+  - docker-compose -f docker-compose_${DATABASE}.test.yml build
   - docker images
   # Test containers run
-  - travis_retry docker-compose -f docker-compose_${DATABASE}.yml up -d etherpad_db && sleep 60
-  - docker-compose -f docker-compose_${DATABASE}.yml ps
-  - docker-compose -f docker-compose_${DATABASE}.yml logs "etherpad_db"
-  - docker-compose -f docker-compose_${DATABASE}.yml ps "etherpad_db" | grep "Up"
-  - travis_retry docker-compose -f docker-compose_${DATABASE}.yml up -d && sleep 30
-  - docker-compose -f docker-compose_${DATABASE}.yml ps
-  - docker-compose -f docker-compose_${DATABASE}.yml logs "etherpad"
-  - docker-compose -f docker-compose_${DATABASE}.yml ps "etherpad" | grep "Up"
+  - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d etherpad_db && sleep 60
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "etherpad_db"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad_db" | grep "Up"
+  - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d && sleep 30
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "etherpad"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
-  - docker-compose -f docker-compose_${DATABASE}.yml logs "sut"
-  - docker-compose -f docker-compose_${DATABASE}.yml ps "sut" | grep "Exit 0"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "sut"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "sut" | grep "Exit 0"
   # Test containers can be dropped and restarted
-  - docker-compose -f docker-compose_${DATABASE}.yml down
-  - travis_retry docker-compose -f docker-compose_${DATABASE}.yml up -d etherpad_db && sleep 60
-  - docker-compose -f docker-compose_${DATABASE}.yml ps
-  - docker-compose -f docker-compose_${DATABASE}.yml logs "etherpad_db"
-  - docker-compose -f docker-compose_${DATABASE}.yml ps "etherpad_db" | grep "Up"
-  - travis_retry docker-compose -f docker-compose_${DATABASE}.yml up -d && sleep 30
-  - docker-compose -f docker-compose_${DATABASE}.yml ps
-  - docker-compose -f docker-compose_${DATABASE}.yml ps "etherpad" | grep "Up"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml down
+  - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d etherpad_db && sleep 60
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "etherpad_db"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad_db" | grep "Up"
+  - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d && sleep 30
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
-  - docker-compose -f docker-compose_${DATABASE}.yml logs "sut"
-  - docker-compose -f docker-compose_${DATABASE}.yml ps "sut" | grep "Exit 0"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "sut"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "sut" | grep "Exit 0"
 
 notifications:
   email: false
