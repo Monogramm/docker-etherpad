@@ -1,11 +1,6 @@
 #!/bin/bash
 set -eo pipefail
 
-declare -A compose=(
-	[debian]='debian'
-	[alpine]='alpine'
-)
-
 declare -A base=(
 	[debian]='debian'
 	[alpine]='alpine'
@@ -59,7 +54,9 @@ for latest in "${latests[@]}"; do
 			cp -r "template/test" "$dir/"
 			cp "template/.env" "$dir/.env"
 			cp template/wait-for-*.sh "$dir/"
-			cp "template/docker-compose_${compose[$variant]}.yml" "$dir/docker-compose.test.yml"
+			cp "template/docker-compose_mysql.yml" "$dir/docker-compose_mysql.test.yml"
+			cp "template/docker-compose_postgresql.yml" "$dir/docker-compose_postgresql.test.yml"
+			cp "template/docker-compose_sqlite.yml" "$dir/docker-compose_sqlite.test.yml"
 
 			# Replace the variables.
 			sed -ri -e '
@@ -67,7 +64,9 @@ for latest in "${latests[@]}"; do
 			' "$dir/Dockerfile"
 
 			# Add Travis-CI env var
-			travisEnv='\n    - VERSION='"$latest"' VARIANT='"$variant$travisEnv"
+			travisEnv='\n    - VERSION='"$latest"' VARIANT='"$variant"' DATABASE=mysql'"$travisEnv"
+			travisEnv='\n    - VERSION='"$latest"' VARIANT='"$variant"' DATABASE=postgresql'"$travisEnv"
+			travisEnv='\n    - VERSION='"$latest"' VARIANT='"$variant"' DATABASE=sqlite'"$travisEnv"
 
 			if [[ $1 == 'build' ]]; then
 				tag="$latest-$variant"

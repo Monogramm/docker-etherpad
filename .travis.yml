@@ -9,50 +9,68 @@ branches:
   only:
     - master
 
-before_script:
+before_install:
   - env | sort
-  - dir="images/${VERSION}/${VARIANT}"
+  - export home=$(pwd)
+  - export travis_dir="${home}/images/${VERSION}/${VARIANT}"
   - export TAG=travis
   - export VCS_REF=`git rev-parse --short HEAD`
   - export BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-  - export IMAGE_NAME=docker-etherpad
+  - export IMAGE_NAME="docker-etherpad:${TAG}"
+
+install:
+  - sudo mkdir -p '/srv/etherpad/data'
+  - sudo chmod 777 '/srv/etherpad/data'
+  - echo "Changing to travis test directory ($travis_dir)"
+  - cd "$travis_dir"
+  # Test containers build
+  - docker-compose -f docker-compose_${DATABASE}.test.yml build
+
+before_script:
+  - docker images
 
 script:
-  - cd "$dir"
-  # Test containers build
-  - docker-compose -f docker-compose.test.yml build
-  - docker images
+  - echo "Changing to travis test directory ($travis_dir)"
+  - cd "$travis_dir"
   # Test containers run
-  - travis_retry docker-compose -f docker-compose.test.yml up -d && sleep 90
-  - docker-compose -f docker-compose.test.yml ps
-  - docker-compose -f docker-compose.test.yml logs "etherpad_db"
-  - docker-compose -f docker-compose.test.yml ps "etherpad_db" | grep "Up"
-  - docker-compose -f docker-compose.test.yml logs "etherpad"
-  - docker-compose -f docker-compose.test.yml ps "etherpad" | grep "Up"
+  - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d && sleep 90
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "etherpad"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
-  - docker-compose -f docker-compose.test.yml logs "sut"
-  - docker-compose -f docker-compose.test.yml ps "sut" | grep "Exit 0"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "sut"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "sut" | grep "Exit 0"
   # Test containers can be dropped and restarted
-  - docker-compose -f docker-compose.test.yml down
-  - travis_retry docker-compose -f docker-compose.test.yml up -d && sleep 90
-  - docker-compose -f docker-compose.test.yml ps
-  - docker-compose -f docker-compose.test.yml logs "etherpad_db"
-  - docker-compose -f docker-compose.test.yml ps "etherpad_db" | grep "Up"
-  - docker-compose -f docker-compose.test.yml ps "etherpad" | grep "Up"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml down
+  - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d && sleep 90
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
-  - docker-compose -f docker-compose.test.yml logs "sut"
-  - docker-compose -f docker-compose.test.yml ps "sut" | grep "Exit 0"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "sut"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "sut" | grep "Exit 0"
 
 notifications:
   email: false
 
 jobs:
   allow_failures:
-    - env: VERSION=develop VARIANT=alpine
-    - env: VERSION=develop VARIANT=debian
+    - env: VERSION=develop VARIANT=alpine DATABASE=sqlite
+    - env: VERSION=develop VARIANT=alpine DATABASE=postgresql
+    - env: VERSION=develop VARIANT=alpine DATABASE=mysql
+    - env: VERSION=develop VARIANT=debian DATABASE=sqlite
+    - env: VERSION=develop VARIANT=debian DATABASE=postgresql
+    - env: VERSION=develop VARIANT=debian DATABASE=mysql
 
 env: # Environments
-    - VERSION=develop VARIANT=alpine
-    - VERSION=develop VARIANT=debian
-    - VERSION=1.8.0 VARIANT=alpine
-    - VERSION=1.8.0 VARIANT=debian
+    - VERSION=develop VARIANT=alpine DATABASE=sqlite
+    - VERSION=develop VARIANT=alpine DATABASE=postgresql
+    - VERSION=develop VARIANT=alpine DATABASE=mysql
+    - VERSION=develop VARIANT=debian DATABASE=sqlite
+    - VERSION=develop VARIANT=debian DATABASE=postgresql
+    - VERSION=develop VARIANT=debian DATABASE=mysql
+    - VERSION=1.8.0 VARIANT=alpine DATABASE=sqlite
+    - VERSION=1.8.0 VARIANT=alpine DATABASE=postgresql
+    - VERSION=1.8.0 VARIANT=alpine DATABASE=mysql
+    - VERSION=1.8.0 VARIANT=debian DATABASE=sqlite
+    - VERSION=1.8.0 VARIANT=debian DATABASE=postgresql
+    - VERSION=1.8.0 VARIANT=debian DATABASE=mysql

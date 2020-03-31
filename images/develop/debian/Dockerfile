@@ -21,6 +21,7 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         netcat \
         python \
+        sqlite3 \
     ; \
     python --version; \
     export PYTHON=`which python`; \
@@ -44,7 +45,11 @@ ENV NODE_ENV=production
 # Add requirements and install application
 RUN set -ex; \
     ./bin/installDeps.sh; \
+    npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
+
+# Allow changes to settings.conf as well as the Sqlite database being persistent.
+VOLUME /opt/etherpad-lite/var
 
 # plugins to install while building the container. By default no plugins are
 # installed.
