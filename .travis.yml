@@ -19,7 +19,7 @@ before_install:
   - export IMAGE_NAME="docker-etherpad:${TAG}"
 
 install:
-  - mkdir -p '/srv/etherpad/data'
+  - sudo mkdir -p '/srv/etherpad/data'
   - chmod 777 '/srv/etherpad/data'
   - echo "Changing to travis test directory ($travis_dir)"
   - cd "$travis_dir"
