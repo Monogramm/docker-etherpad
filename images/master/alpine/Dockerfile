@@ -24,7 +24,7 @@ RUN set -ex; \
         sqlite \
     ; \
     python --version; \
-    export PYTHON=`which python`; \
+    export PYTHON=$(command -v python); \
     rm -rf /var/lib/apt/lists/*; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
