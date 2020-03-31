@@ -48,6 +48,9 @@ RUN set -ex; \
     npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
 
+# Allow changes to settings.conf as well as the Sqlite database being persistent.
+VOLUME /opt/etherpad-lite/var
+
 # plugins to install while building the container. By default no plugins are
 # installed.
 # If given a value, it has to be a space-separated, quoted list of plugin names.
