@@ -50,6 +50,11 @@ script:
 notifications:
   email: false
 
+jobs:
+  allow_failures:
+    - env: VERSION=develop VARIANT=alpine
+    - env: VERSION=develop VARIANT=debian
+
 env: # Environments
     - VERSION=develop VARIANT=alpine
     - VERSION=develop VARIANT=debian
