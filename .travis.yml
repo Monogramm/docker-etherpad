@@ -23,12 +23,13 @@ script:
   - docker-compose -f docker-compose.yml build
   - docker images
   # Test containers run
-  - travis_retry docker-compose -f docker-compose.yml up -d etherpad_db && sleep 60
+  - travis_retry docker-compose -f docker-compose.yml up -d && sleep 90
+  #- travis_retry docker-compose -f docker-compose.yml up -d etherpad_db && sleep 60
   - docker-compose -f docker-compose.yml ps
   - docker-compose -f docker-compose.yml logs "etherpad_db"
   - docker-compose -f docker-compose.yml ps "etherpad_db" | grep "Up"
-  - travis_retry docker-compose -f docker-compose.yml up -d && sleep 30
-  - docker-compose -f docker-compose.yml ps
+  #- travis_retry docker-compose -f docker-compose.yml up -d && sleep 30
+  #- docker-compose -f docker-compose.yml ps
   - docker-compose -f docker-compose.yml logs "etherpad"
   - docker-compose -f docker-compose.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
@@ -36,12 +37,13 @@ script:
   - docker-compose -f docker-compose.yml ps "sut" | grep "Exit 0"
   # Test containers can be dropped and restarted
   - docker-compose -f docker-compose.yml down
-  - travis_retry docker-compose -f docker-compose.yml up -d etherpad_db && sleep 60
+  - travis_retry docker-compose -f docker-compose.yml up -d && sleep 90
+  #- travis_retry docker-compose -f docker-compose.yml up -d etherpad_db && sleep 60
   - docker-compose -f docker-compose.yml ps
   - docker-compose -f docker-compose.yml logs "etherpad_db"
   - docker-compose -f docker-compose.yml ps "etherpad_db" | grep "Up"
-  - travis_retry docker-compose -f docker-compose.yml up -d && sleep 30
-  - docker-compose -f docker-compose.yml ps
+  #- travis_retry docker-compose -f docker-compose.yml up -d && sleep 30
+  #- docker-compose -f docker-compose.yml ps
   - docker-compose -f docker-compose.yml ps "etherpad" | grep "Up"
   - echo 'Wait until containers init and tests are over' && sleep 60
   - docker-compose -f docker-compose.yml logs "sut"
