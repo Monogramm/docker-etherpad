@@ -1,7 +1,7 @@
 FROM node:12-alpine
 
-# Add wait-for-it
-ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /
+# Add wait-for-it "like" scripts compatible with sh instead of bash
+ADD wait-for-file.sh wait-for-service.sh /
 
 # Follow the principle of least privilege: run as unprivileged user.
 #
@@ -9,8 +9,8 @@ ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.s
 # that do not allow images running as root.
 RUN set -ex; \
     adduser -u 5001 -D etherpad; \
-    chmod +x /wait-for-it.sh; \
-    chown etherpad /wait-for-it.sh
+    chmod +x /wait-for-*.sh; \
+    chown etherpad /wait-for-*.sh
 
 ARG ETHERPAD_VERSION=develop
 
