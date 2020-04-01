@@ -48,6 +48,16 @@ RUN set -ex; \
     npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
 
+# Clean up build dependencies
+USER root
+
+RUN set -ex; \
+    apk --purge del \
+        g++ \
+        make
+
+USER etherpad:etherpad
+
 # Allow changes to settings.conf as well as the Sqlite database being persistent.
 VOLUME /opt/etherpad-lite/var
 
