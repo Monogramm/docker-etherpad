@@ -40,6 +40,9 @@ script:
   - echo 'Wait until containers init and tests are over' && sleep 60
   - docker-compose -f docker-compose_${DATABASE}.test.yml logs "sut"
   - docker-compose -f docker-compose_${DATABASE}.test.yml ps "sut" | grep "Exit 0"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "etherpad"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad" | grep "Up"
   # Test containers can be dropped and restarted
   - docker-compose -f docker-compose_${DATABASE}.test.yml down
   - travis_retry docker-compose -f docker-compose_${DATABASE}.test.yml up -d && sleep 90
@@ -48,6 +51,9 @@ script:
   - echo 'Wait until containers init and tests are over' && sleep 60
   - docker-compose -f docker-compose_${DATABASE}.test.yml logs "sut"
   - docker-compose -f docker-compose_${DATABASE}.test.yml ps "sut" | grep "Exit 0"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml logs "etherpad"
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps
+  - docker-compose -f docker-compose_${DATABASE}.test.yml ps "etherpad" | grep "Up"
 
 notifications:
   email: false
