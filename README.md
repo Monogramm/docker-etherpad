@@ -1,4 +1,5 @@
 [![License: AGPL v3][uri_license_image]][uri_license]
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b511ea33af648179249c3590b8f28b9)](https://app.codacy.com/gh/Monogramm/docker-etherpad?utm_source=github.com&utm_medium=referral&utm_content=Monogramm/docker-etherpad&utm_campaign=Badge_Grade_Settings)
 [![Docs](https://img.shields.io/badge/Docs-Github%20Pages-blue)](https://monogramm.github.io/etherpad/)
 [![Build Status](https://travis-ci.org/Monogramm/docker-etherpad.svg)](https://travis-ci.org/Monogramm/docker-etherpad)
 [![Docker Automated buid](https://img.shields.io/docker/cloud/build/monogramm/docker-etherpad.svg)](https://hub.docker.com/r/monogramm/docker-etherpad/)
