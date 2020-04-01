@@ -24,6 +24,7 @@ dockerRepo="monogramm/docker-etherpad"
 latests=( $( curl -fsSL 'https://api.github.com/repos/ether/etherpad-lite/tags' |tac|tac| \
 	grep -oE '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' | \
 	sort -urV )
+	master
 	develop )
 
 # Remove existing images
@@ -71,7 +72,7 @@ for latest in "${latests[@]}"; do
 			if [[ $1 == 'build' ]]; then
 				tag="$latest-$variant"
 				echo "Build Dockerfile for ${tag}"
-				docker build -t ${dockerRepo}:${tag} $dir
+				docker build -t "${dockerRepo}:${tag}" "$dir"
 			fi
 		done
 	fi

@@ -1,4 +1,4 @@
-FROM node:12-stretch-slim
+FROM node:12-alpine
 
 # Add wait-for-it "like" scripts compatible with sh instead of bash
 COPY wait-for-file.sh wait-for-service.sh /
@@ -8,20 +8,20 @@ COPY wait-for-file.sh wait-for-service.sh /
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
 RUN set -ex; \
-    useradd --uid 5001 --create-home etherpad; \
+    adduser -u 5001 -D etherpad; \
     chmod +x /wait-for-*.sh; \
     chown etherpad /wait-for-*.sh
 
-ARG ETHERPAD_VERSION=latest
+ARG ETHERPAD_VERSION=master
 
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 
 RUN set -ex; \
-    apt-get update -q; \
-    apt-get install -y --no-install-recommends \
-        netcat \
+    apk add --no-cache \
+        g++ \
+        make \
         python \
-        sqlite3 \
+        sqlite \
     ; \
     python --version; \
     export PYTHON=$(command -v python); \

@@ -68,6 +68,12 @@ env: # Environments
     - VERSION=develop VARIANT=debian DATABASE=sqlite
     - VERSION=develop VARIANT=debian DATABASE=postgresql
     - VERSION=develop VARIANT=debian DATABASE=mysql
+    - VERSION=master VARIANT=alpine DATABASE=sqlite
+    - VERSION=master VARIANT=alpine DATABASE=postgresql
+    - VERSION=master VARIANT=alpine DATABASE=mysql
+    - VERSION=master VARIANT=debian DATABASE=sqlite
+    - VERSION=master VARIANT=debian DATABASE=postgresql
+    - VERSION=master VARIANT=debian DATABASE=mysql
     - VERSION=1.8.0 VARIANT=alpine DATABASE=sqlite
     - VERSION=1.8.0 VARIANT=alpine DATABASE=postgresql
     - VERSION=1.8.0 VARIANT=alpine DATABASE=mysql

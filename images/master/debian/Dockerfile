@@ -12,7 +12,7 @@ RUN set -ex; \
     chmod +x /wait-for-*.sh; \
     chown etherpad /wait-for-*.sh
 
-ARG ETHERPAD_VERSION=latest
+ARG ETHERPAD_VERSION=master
 
 ADD --chown=etherpad:etherpad https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.tar.gz ./
 

@@ -1,6 +1,6 @@
-FROM alpine
+FROM alpine:3
 
-ADD docker_test.sh /docker_test.sh
+COPY docker_test.sh /docker_test.sh
 
 RUN set -ex; \
     echo 'PREPARE TEST OPERATIONS'; \
