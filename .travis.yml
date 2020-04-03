@@ -16,7 +16,7 @@ before_install:
   - export TAG=travis
   - export VCS_REF=`git rev-parse --short HEAD`
   - export BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-  - export IMAGE_NAME="docker-etherpad:${TAG}"
+  - export IMAGE_NAME="monogramm/docker-etherpad:${TAG}"
 
 install:
   - sudo mkdir -p '/srv/etherpad/data'

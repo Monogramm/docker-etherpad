@@ -24,11 +24,12 @@ services:
         - VCS_REF=${VCS_REF}
         - BUILD_DATE=${BUILD_DATE}
     # For production, download prebuilt image
-    #image: ${IMAGE_NAME}
+    image: ${IMAGE_NAME}
     container_name: etherpad
     #restart: always
     volumes:
-      - /srv/etherpad/data:/opt/etherpad-lite/var
+      # Persist settings.conf as well as the Sqlite database
+      #- /srv/etherpad/data:/opt/etherpad-lite/var
       # If you wish to provide your own API key
       #- ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
       - /etc/localtime:/etc/localtime:ro
