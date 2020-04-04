@@ -527,9 +527,9 @@
     // https://www.npmjs.com/package/ep_webpack
     "ep_webpack": {
       /* Ignores parts (not plugins) not ready to be bundled */
-      "ignoredParts": ["autocomp", "comments_page"],
-      /* Bundle CSS files too */
-      "bundleCSS": true
+      "ignoredParts": ["markdown"],
+      /* Do not bundle CSS files */
+      "bundleCSS": false
     }
 
 }
