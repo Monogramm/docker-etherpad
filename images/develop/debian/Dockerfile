@@ -59,7 +59,7 @@ VOLUME /opt/etherpad-lite/var
 #   ETHERPAD_PLUGINS="ep_codepad ep_author_neat"
 #
 # Available Etherpad plugins: https://static.etherpad.org/plugins.html
-ARG ETHERPAD_PLUGINS="ep_hash_auth ep_markdown ep_ldapauth ep_piwik ep_webpack"
+ARG ETHERPAD_PLUGINS="ep_hash_auth ep_ldapauth ep_webpack ep_delete_empty_pads ep_markdown ep_spellcheck ep_piwik"
 
 # Install the plugins, if ETHERPAD_PLUGINS is not empty.
 #

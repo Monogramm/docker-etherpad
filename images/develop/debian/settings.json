@@ -515,21 +515,26 @@
         "hash_adm": false
     },
 
-    // https://www.npmjs.com/package/ep_markdown
-    "ep_markdown_default": "${MARKDOWN:true}",
-
-    // https://www.npmjs.com/package/ep_piwik
-    "ep_piwik": {
-        "url": "${PIWIK_URL}",
-        "siteId": "${PIWIK_SITE_ID:_}"
-    },
-
     // https://www.npmjs.com/package/ep_webpack
     "ep_webpack": {
       /* Ignores parts (not plugins) not ready to be bundled */
       "ignoredParts": ["markdown"],
       /* Do not bundle CSS files */
       "bundleCSS": false
+    },
+
+    // https://www.npmjs.com/package/ep_markdown
+    "ep_markdown_default": "${MARKDOWN:true}",
+
+    // https://www.npmjs.com/package/ep_spellcheck
+    "ep_spellcheck": {
+       "disabledByDefault" : true
+    },
+
+    // https://www.npmjs.com/package/ep_piwik
+    "ep_piwik": {
+        "url": "${PIWIK_URL}",
+        "siteId": "${PIWIK_SITE_ID:_}"
     }
 
 }
