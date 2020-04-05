@@ -25,7 +25,7 @@ RUN set -ex; \
     ; \
     python --version; \
     export PYTHON=$(command -v python); \
-    rm -rf /var/lib/apt/lists/*; \
+    rm -rf /var/cache/apk/*; \
     tar -xzf ${ETHERPAD_VERSION}.tar.gz; \
     rm -f ${ETHERPAD_VERSION}.tar.gz; \
     mkdir -p /opt; \
