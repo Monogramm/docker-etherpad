@@ -12,7 +12,7 @@
 
 Docker image for **Etherpad** setup for production and with additionnal plugins.
 
-:construction: **This image is still in development!**
+:construction: **This image is still in beta!**
 
 Additionnal plugins installed:
 
