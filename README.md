@@ -42,6 +42,14 @@ Real-time collaborative document editor.
     -   `develop-alpine` `develop`
     -   `develop-debian`
 
+-   From Etherpad-lite [`1.8.4` tag](https://github.com/ether/etherpad-lite/releases/tag/1.8.4)
+    -   `1.8.4-alpine` `1.8.4`
+    -   `1.8.4-debian`
+
+-   From Etherpad-lite [`1.8.3` tag](https://github.com/ether/etherpad-lite/releases/tag/1.8.3)
+    -   `1.8.3-alpine` `1.8.3`
+    -   `1.8.3-debian`
+
 -   From Etherpad-lite [`1.8.0` tag](https://github.com/ether/etherpad-lite/releases/tag/1.8.0)
     -   `1.8.0-alpine` `1.8.0`
     -   `1.8.0-debian`

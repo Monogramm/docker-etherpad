@@ -86,3 +86,15 @@ env: # Environments
     - VERSION=1.8.0 VARIANT=debian DATABASE=sqlite
     - VERSION=1.8.0 VARIANT=debian DATABASE=postgresql
     - VERSION=1.8.0 VARIANT=debian DATABASE=mysql
+    - VERSION=1.8.3 VARIANT=alpine DATABASE=sqlite
+    - VERSION=1.8.3 VARIANT=alpine DATABASE=postgresql
+    - VERSION=1.8.3 VARIANT=alpine DATABASE=mysql
+    - VERSION=1.8.3 VARIANT=debian DATABASE=sqlite
+    - VERSION=1.8.3 VARIANT=debian DATABASE=postgresql
+    - VERSION=1.8.3 VARIANT=debian DATABASE=mysql
+    - VERSION=1.8.4 VARIANT=alpine DATABASE=sqlite
+    - VERSION=1.8.4 VARIANT=alpine DATABASE=postgresql
+    - VERSION=1.8.4 VARIANT=alpine DATABASE=mysql
+    - VERSION=1.8.4 VARIANT=debian DATABASE=sqlite
+    - VERSION=1.8.4 VARIANT=debian DATABASE=postgresql
+    - VERSION=1.8.4 VARIANT=debian DATABASE=mysql
