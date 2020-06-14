@@ -1,4 +1,4 @@
-FROM node:12-stretch-slim
+FROM node:12-buster-slim
 
 # Add wait-for-it "like" scripts compatible with sh instead of bash
 COPY wait-for-file.sh wait-for-service.sh /
