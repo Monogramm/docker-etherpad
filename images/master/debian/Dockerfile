@@ -1,16 +1,11 @@
 FROM node:12-buster-slim
 
-# Add wait-for-it "like" scripts compatible with sh instead of bash
-COPY wait-for-file.sh wait-for-service.sh /
-
 # Follow the principle of least privilege: run as unprivileged user.
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
 RUN set -ex; \
-    useradd --uid 5001 --create-home etherpad; \
-    chmod +x /wait-for-*.sh; \
-    chown etherpad /wait-for-*.sh
+    useradd --uid 5001 --create-home etherpad
 
 ARG ETHERPAD_VERSION=master
 
@@ -38,12 +33,17 @@ USER etherpad:etherpad
 
 WORKDIR /opt/etherpad-lite
 
+# Add entrypoint
+COPY entrypoint.sh /opt/etherpad-lite
+
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
 ENV NODE_ENV=production
 
 # Add requirements and install application
 RUN set -ex; \
+    chmod +x /entrypoint.sh; \
+    chown etherpad /entrypoint.sh; \
     ./bin/installDeps.sh; \
     npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
@@ -72,6 +72,7 @@ RUN set -ex; \
 COPY --chown=etherpad:etherpad ./settings.json /opt/etherpad-lite/settings.json
 
 EXPOSE 9001
+ENTRYPOINT ["/opt/etherpad-lite/entrypoint.sh"]
 CMD ["node", "node_modules/ep_etherpad-lite/node/server.js"]
 
 # Arguments to label built container

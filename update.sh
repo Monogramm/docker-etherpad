@@ -54,7 +54,7 @@ for latest in "${latests[@]}"; do
 			cp -r "template/hooks" "$dir/"
 			cp -r "template/test" "$dir/"
 			cp "template/.env" "$dir/.env"
-			cp template/wait-for-*.sh "$dir/"
+			cp template/*.sh "$dir/"
 			cp "template/docker-compose_mysql.yml" "$dir/docker-compose_mysql.test.yml"
 			cp "template/docker-compose_postgresql.yml" "$dir/docker-compose_postgresql.test.yml"
 			cp "template/docker-compose_sqlite.yml" "$dir/docker-compose_sqlite.test.yml"
