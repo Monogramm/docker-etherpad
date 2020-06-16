@@ -42,8 +42,8 @@ ENV NODE_ENV=production
 
 # Add requirements and install application
 RUN set -ex; \
-    chmod +x /entrypoint.sh; \
-    chown etherpad /entrypoint.sh; \
+    chmod +x /opt/etherpad-lite/entrypoint.sh; \
+    chown etherpad:etherpad /opt/etherpad-lite/entrypoint.sh; \
     ./bin/installDeps.sh; \
     npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
