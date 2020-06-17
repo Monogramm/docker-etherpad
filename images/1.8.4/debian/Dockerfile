@@ -34,7 +34,7 @@ USER etherpad:etherpad
 WORKDIR /opt/etherpad-lite
 
 # Add entrypoint
-COPY entrypoint.sh /opt/etherpad-lite
+COPY --chown=etherpad:etherpad entrypoint.sh /opt/etherpad-lite
 
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
@@ -42,8 +42,6 @@ ENV NODE_ENV=production
 
 # Add requirements and install application
 RUN set -ex; \
-    chmod +x /opt/etherpad-lite/entrypoint.sh; \
-    chown etherpad:etherpad /opt/etherpad-lite/entrypoint.sh; \
     ./bin/installDeps.sh; \
     npm install sqlite3; \
 	rm -rf ~/.npm/_cacache
