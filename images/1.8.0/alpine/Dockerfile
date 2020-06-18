@@ -1,16 +1,11 @@
 FROM node:12-alpine
 
-# Add wait-for-it "like" scripts compatible with sh instead of bash
-COPY wait-for-file.sh wait-for-service.sh /
-
 # Follow the principle of least privilege: run as unprivileged user.
 #
 # Running as non-root enables running this image in platforms like OpenShift
 # that do not allow images running as root.
 RUN set -ex; \
-    adduser -u 5001 -D etherpad; \
-    chmod +x /wait-for-*.sh; \
-    chown etherpad /wait-for-*.sh
+    adduser -u 5001 -D etherpad
 
 ARG ETHERPAD_VERSION=1.8.0
 
@@ -37,6 +32,9 @@ RUN set -ex; \
 USER etherpad:etherpad
 
 WORKDIR /opt/etherpad-lite
+
+# Add entrypoint
+COPY --chown=etherpad:etherpad entrypoint.sh /opt/etherpad-lite
 
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
@@ -82,6 +80,7 @@ RUN set -ex; \
 COPY --chown=etherpad:etherpad ./settings.json /opt/etherpad-lite/settings.json
 
 EXPOSE 9001
+ENTRYPOINT ["/opt/etherpad-lite/entrypoint.sh"]
 CMD ["node", "node_modules/ep_etherpad-lite/node/server.js"]
 
 # Arguments to label built container
